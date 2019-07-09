@@ -2,7 +2,7 @@ let http = require('http')
 let fs = require('fs')
 
 // 1.创建服务器
-let serve = http.createServer()
+let serve = http.createServe()
 
 //2.监听请求
 serve.on('request', (req, res) => {
