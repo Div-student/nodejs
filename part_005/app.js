@@ -3,21 +3,20 @@ var fs = require('fs')
 var path = require('path')
 var url = require('url')
 var templateart = require('art-template')
+let commemt = [
+  {
+    name: '申小博',
+    content: "我爱你申晓波"
+  },
+  {
+    name: '网小刚',
+    content: '哎做唉'
+  }
+]
 let serve = http.createServer()
 serve.on('request', (req, res) => {
   let pathObject = url.parse(req.url, true)
   let getUrl = pathObject.pathname
-  let commemt = [
-    {
-      name: '申小博',
-      content: "我爱你申晓波"
-    },
-    {
-      name: '网小刚',
-      content: '哎做唉'
-    }
-  ]
-
   console.log('recieved request')
   if (getUrl === '/') {
     fs.readFile('pages/index.html', (err, data) => {
