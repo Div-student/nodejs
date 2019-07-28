@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    body,
+    html {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .wrapBox {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .header {
+      /* flex:0 */
+    }
+
+    .footer {
+      /* flex:0 */
+    }
+
+    .content {
+      height: 90%;
+      flex: 1;
+      background-color: #ccc;
+      overflow: auto;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="wrapBox">
+    <div class="header">我是头部</div>
+    <div class="content">
+      <button>查询</button>
+    </div>
+    <div class="footer">我是底部</div>
+  </div>
+</body>
+<script>
+  function get(url, params){
+    if (params) {
+      let paramsArray = [];
+      //拼接参数  
+      Object.keys(params).forEach(key => paramsArray.push(key + '=' + params[key]))
+      if (url.search(/\?/) === -1) {
+        url += '?' + paramsArray.join('&')
+      } else {
+        url += '&' + paramsArray.join('&')
+      }
+    }
+    //fetch请求  
+    fetch(url, {
+      method: 'GET',
+    })
+      .then((response) => { }).catch((error) => {
+        alert(error)
+      })
+    console.log(url)
+  }
+
+  document.getElementsByTagName('button')[0].addEventListener('click', () => {
+    get('http://gw.api.taobao.com/router/rest/taobao.tbk.uatm.favorites.item.get', {adzone_id:'34567', favorites_id:10010, fields:'num_iid,title,pict_url,small_images,reserve_price,zk_final_price,user_type,provcity,item_url,seller_id,volume,nick,shop_title,zk_final_price_wap,event_start_time,event_end_time,tk_rate,status,type'})
+    // console.log(get('http://api.dataoke.com/index.php', {name: 'xiaobo'}))
+    // fetch('http://api.dataoke.com/index.php?r=Port/index', {
+    //   method: 'get'
+    // })
+  })
+</script>
+
+</html>
