@@ -3,13 +3,13 @@ var express = require('express')
 var bodyParser = require('body-parser')
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 var router = express.Router()
+var api = require('./api/api.js')
 router.get('/', (req, res) => {
-  fs.readFile('data/base.json', (error, data) => {
-    if (error) {
-      res.status('500').send('readFile is errror')
-    } else {
-      let temp = JSON.parse(data.toString())
-      res.render('index.html', temp)
+  api.findDataAll((erro, data)=>{
+    if(erro){
+      res.status('500').send('serve is fail')
+    }else{
+      res.render('index.html', data)
     }
   })
 })
